@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poetry Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f1ea;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+        }
+        .card {
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+        .btn-generate {
+            background-color: #ff6f61;
+            color: white;
+            border-radius: 8px;
+        }
+        .btn-generate:hover {
+            background-color: #e85b50;
+        }
+        .poem-box {
+            background: #fdf7f2;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 150px;
+        }
+        .btn-copy {
+            background-color: #5a4a42;
+            color: white;
+            border-radius: 8px;
+        }
+        .btn-copy:hover {
+            background-color: #473c35;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h2 class="mb-4">Poetry Generator</h2>
+        <div class="card p-4">
+            <input type="text" class="form-control mb-3" id="prompt" placeholder="Enter a word or phrase...">
+            <button class="btn btn-generate w-100 mb-3" onclick="generatePoem()">Generate Poetry</button>
+            <div class="poem-box" id="poemOutput">Your generated poem will appear here...</div>
+            <button class="btn btn-copy mt-3" onclick="copyPoem()">Copy Poem</button>
+        </div>
+    </div>
+    
+    <script>
+        function generatePoem() {
+            let prompt = document.getElementById("prompt").value;
+            let poemOutput = document.getElementById("poemOutput");
+            
+            if (prompt.trim() === "") {
+                poemOutput.innerHTML = "<em>Please enter a word or phrase to generate poetry.</em>";
+                return;
+            }
+            
+            poemOutput.innerHTML = `<em>Generating poetry based on: "${prompt}"...</em>`;
+            
+            // Simulating poetry generation (Replace with actual API call)
+            setTimeout(() => {
+                poemOutput.innerHTML = `"The stars whisper in silent night, <br>
+                A melody soft, a flickering light.<br>
+                From echoes deep where dreams take flight,<br>
+                Your words have spun the world so bright."`;
+            }, 2000);
+        }
+        
+        function copyPoem() {
+            let poemText = document.getElementById("poemOutput").innerText;
+            navigator.clipboard.writeText(poemText).then(() => {
+                alert("Poem copied to clipboard!");
+            });
+        }
+    </script>
+</body>
+</html>
